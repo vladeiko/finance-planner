@@ -6,6 +6,7 @@ const TABS = [
   { section: 'history', path: '/history', label: 'История' },
   { section: 'plan', path: '/plan', label: 'План' },
   { section: 'mortgage', path: '/mortgage', label: 'Ипотека' },
+  { section: 'settings', path: '/settings', label: 'Настройки' },
 ];
 
 /** Нижняя панель вкладок; `section` — первый сегмент маршрута. */

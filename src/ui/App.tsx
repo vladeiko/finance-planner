@@ -10,9 +10,11 @@ import { PaycheckScreen } from './screens/paycheck/PaycheckScreen';
 import { AccountScreen } from './screens/plan/AccountScreen';
 import { NewAccountScreen } from './screens/plan/NewAccountScreen';
 import { PlanScreen } from './screens/plan/PlanScreen';
+import { SettingsScreen } from './screens/settings/SettingsScreen';
 
 function screenFor([section, id]: string[]) {
   if (section === 'mortgage') return <MortgageScreen />;
+  if (section === 'settings') return <SettingsScreen />;
   if (section === 'paycheck') return <PaycheckScreen />;
   if (section === 'history') {
     return id === undefined ? <HistoryScreen /> : <PaycheckDetailsScreen id={id} />;
