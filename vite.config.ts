@@ -3,7 +3,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
+// На GitHub Pages сайт лежит в подпапке; CI передаёт её в BASE_PATH (например, `/finance-planner/`).
+const base = process.env.BASE_PATH ?? '/';
+
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
