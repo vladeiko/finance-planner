@@ -27,9 +27,9 @@ test('открывается по прямой ссылке, пустой пла
   );
 });
 
-test('неизвестный адрес ведёт на план', async ({ page }) => {
+test('неизвестный адрес ведёт на получку', async ({ page }) => {
   await page.goto('/#/nowhere');
-  await expect(page).toHaveURL(/#\/plan$/);
+  await expect(page).toHaveURL(/#\/paycheck$/);
 });
 
 test('простой счёт: сумма, доля с получки, база и остаток; данные переживают перезагрузку', async ({

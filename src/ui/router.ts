@@ -1,7 +1,7 @@
 import { useMemo, useSyncExternalStore } from 'react';
 
-/** Путь по умолчанию; станет `/paycheck`, когда появится экран получки. */
-export const DEFAULT_PATH = '/plan';
+/** Путь по умолчанию. */
+export const DEFAULT_PATH = '/paycheck';
 
 /** «#/plan/abc» → ['plan', 'abc']. */
 export function parseHash(hash: string): string[] {

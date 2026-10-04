@@ -1,7 +1,11 @@
 import { href } from '../router';
 import styles from './TabBar.module.css';
 
-const TABS = [{ section: 'plan', path: '/plan', label: 'План' }];
+const TABS = [
+  { section: 'paycheck', path: '/paycheck', label: 'Получка' },
+  { section: 'history', path: '/history', label: 'История' },
+  { section: 'plan', path: '/plan', label: 'План' },
+];
 
 /** Нижняя панель вкладок; `section` — первый сегмент маршрута. */
 export function TabBar({ section }: { section: string | undefined }) {

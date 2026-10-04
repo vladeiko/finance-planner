@@ -108,6 +108,48 @@ describe('summarize — таблица из спецификации (база 1
   });
 });
 
+describe('summarize — ручная правка долей, таблица из спецификации', () => {
+  const planned = buildAllocations(sourcePlan, 'salary');
+  const edit = (changes: Record<string, number>) =>
+    planned.map((a) => ({ ...a, amount: rub(changes[a.accountId] ?? a.amount / 100) }));
+
+  test.each<{
+    name: string;
+    changes: Record<string, number>;
+    setAside: number;
+    remainder: number;
+  }>([
+    {
+      name: 'Медицина 15 000 → 10 000, НЗ 10 000 → 15 000',
+      changes: { medicine: 10_000, reserve: 15_000 },
+      setAside: 94_970,
+      remainder: 30_030,
+    },
+    {
+      name: 'НЗ 10 000 → 5 000, Копилка 7 500 → 2 500',
+      changes: { reserve: 5_000, piggy: 2_500 },
+      setAside: 84_970,
+      remainder: 40_030,
+    },
+    {
+      name: 'НЗ 10 000 → 20 000',
+      changes: { reserve: 20_000 },
+      setAside: 104_970,
+      remainder: 20_030,
+    },
+  ])('$name', ({ changes, setAside, remainder }) => {
+    const s = summarize({
+      actual: rub(125_000),
+      base: rub(125_000),
+      allocations: edit(changes),
+      extras: [],
+      freeDistribution: [],
+    });
+    expect(s.setAside).toBe(rub(setAside));
+    expect(s.remainder).toBe(rub(remainder));
+  });
+});
+
 describe('summarize', () => {
   const allocations = [{ accountId: 'flat', amount: rub(94_970) }];
   const base = rub(125_000);
