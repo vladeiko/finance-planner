@@ -5,12 +5,14 @@ import { TabBar } from './components/TabBar';
 import { DEFAULT_PATH, navigate, useRoute } from './router';
 import { HistoryScreen } from './screens/history/HistoryScreen';
 import { PaycheckDetailsScreen } from './screens/history/PaycheckDetailsScreen';
+import { MortgageScreen } from './screens/mortgage/MortgageScreen';
 import { PaycheckScreen } from './screens/paycheck/PaycheckScreen';
 import { AccountScreen } from './screens/plan/AccountScreen';
 import { NewAccountScreen } from './screens/plan/NewAccountScreen';
 import { PlanScreen } from './screens/plan/PlanScreen';
 
 function screenFor([section, id]: string[]) {
+  if (section === 'mortgage') return <MortgageScreen />;
   if (section === 'paycheck') return <PaycheckScreen />;
   if (section === 'history') {
     return id === undefined ? <HistoryScreen /> : <PaycheckDetailsScreen id={id} />;

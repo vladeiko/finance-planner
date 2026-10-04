@@ -5,6 +5,7 @@ const TABS = [
   { section: 'paycheck', path: '/paycheck', label: 'Получка' },
   { section: 'history', path: '/history', label: 'История' },
   { section: 'plan', path: '/plan', label: 'План' },
+  { section: 'mortgage', path: '/mortgage', label: 'Ипотека' },
 ];
 
 /** Нижняя панель вкладок; `section` — первый сегмент маршрута. */
