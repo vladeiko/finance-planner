@@ -59,7 +59,7 @@ src/
     └── styles/                   # tokens.css, global.css
 ```
 
-Unit-тесты — рядом с кодом (`*.test.ts`). E2e-тесты — в корневой папке `e2e/` (`*.spec.ts`), запуск `pnpm e2e`; конфиг — `playwright.config.ts`.
+Unit-тесты — рядом с кодом (`*.test.ts`). E2e-тесты — в корневой папке `e2e/` (`*.spec.ts`), запуск `pnpm e2e` (на новой машине сначала `pnpm e2e:install` — Chromium и системные библиотеки, нужен sudo); конфиг — `playwright.config.ts`.
 
 ## Состояние
 

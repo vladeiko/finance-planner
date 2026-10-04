@@ -9,7 +9,7 @@
 - [x] **0. Спецификация** — product, data-model, architecture
 - [x] **0.1. Правила для Claude** — `.claude/rules/` (workflow, git, слои), `.claude/skills/` (finish-step, spec-change, new-screen, schema-migration)
 - [x] **1. Каркас** — Vite + React + TS, Vitest, Playwright (`e2e/`, мобильный и десктопный viewport), линтер/форматтер, структура папок, PWA-плагин
-  - Chromium запускается в WSL без `install-deps` (e2e проходят в mobile 375px и desktop)
+  - браузер для e2e ставится `pnpm e2e:install` (Chromium + системные библиотеки через apt, нужен sudo); e2e — в mobile 375px и desktop
   - линтер: oxlint (`.oxlintrc.json`, включены правила react-hooks) + Prettier; `.md` Prettier не форматирует
   - зависимости — строго точные версии (без `^`), закреплено `save-exact=true` в `.npmrc`
   - pre-commit хук `.githooks/pre-commit` (Prettier --write + oxlint по файлам из индекса); подключается сам при `pnpm install` через `prepare` → `core.hooksPath`, без husky
