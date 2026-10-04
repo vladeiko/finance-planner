@@ -15,7 +15,10 @@
   place-items: center;
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: var(--font-size-sm);
+  min-width: 0;
+  padding-inline: var(--space-1);
+  /* Пять вкладок на узком экране: слово «Настройки» не должно упираться в край. */
+  font-size: min(var(--font-size-sm), 3.1vw);
 
   &[aria-current='page'] {
     color: var(--color-primary);

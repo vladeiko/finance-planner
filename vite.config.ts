@@ -16,9 +16,15 @@ export default defineConfig({
         start_url: '.',
         background_color: '#ffffff',
         theme_color: '#1f6feb',
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+          // Знак вписан в безопасную зону, поэтому тот же файл годится и как maskable.
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml' },
+        ],
       },
-      workbox: { globPatterns: ['**/*.{js,css,html,svg}'] },
+      workbox: { globPatterns: ['**/*.{js,css,html,svg,png}'] },
     }),
   ],
   test: {
