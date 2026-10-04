@@ -1,0 +1,24 @@
+#!/bin/sh
+# Перед коммитом: форматирует (Prettier) и линтит (oxlint) файлы из индекса.
+# Включается автоматически при `pnpm install` (скрипт prepare → core.hooksPath).
+set -e
+
+files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|tsx|js|jsx|json|css|html)$' || true)
+[ -z "$files" ] && exit 0
+
+# Файлы, где есть и застейдженные, и незастейдженные правки: форматирование их
+# целиком добавило бы в коммит лишнее, поэтому только проверяем.
+for f in $files; do
+  if ! git diff --quiet -- "$f"; then
+    pnpm exec prettier --check "$f" >/dev/null || {
+      echo "pre-commit: $f отформатирован не по Prettier и частично в индексе — запусти 'pnpm format' и добавь файл заново" >&2
+      exit 1
+    }
+  else
+    pnpm exec prettier --write --log-level warn "$f"
+    git add "$f"
+  fi
+done
+
+code=$(echo "$files" | grep -E '\.(ts|tsx|js|jsx)$' || true)
+[ -z "$code" ] || pnpm exec oxlint $code

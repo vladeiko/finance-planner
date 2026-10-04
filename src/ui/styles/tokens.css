@@ -1,0 +1,35 @@
+/* Брейкпоинты (в @container переменные не работают, пишем числами):
+   middle — 36rem, big — 60rem. См. spec/architecture.md */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-text: #1b1f23;
+  --color-text-muted: #5b6570;
+  --color-primary: #1f6feb;
+  --color-border: #d6dbe0;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+
+  --radius-md: 0.5rem;
+
+  --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1216;
+    --color-surface: #181d23;
+    --color-text: #e6e9ec;
+    --color-text-muted: #9aa5b1;
+    --color-primary: #4c8dff;
+    --color-border: #2b333c;
+  }
+}

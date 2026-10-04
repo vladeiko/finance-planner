@@ -1,0 +1,9 @@
+node_modules
+dist
+dev-dist
+pnpm-lock.yaml
+test-results
+playwright-report
+.claude
+spec
+*.md

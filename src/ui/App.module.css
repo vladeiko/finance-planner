@@ -1,0 +1,10 @@
+.app {
+  container-type: inline-size;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: var(--space-4);
+
+  & h1 {
+    font-size: var(--font-size-lg);
+  }
+}
