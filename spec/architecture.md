@@ -38,9 +38,12 @@ src/
 │   └── *.test.ts                 # тесты рядом с кодом
 ├── storage/
 │   ├── document.ts               # AppDocument, SCHEMA_VERSION, emptyDocument()
-│   ├── migrations.ts (+ test)
-│   ├── repository.ts             # interface Repository { load(); save(doc) }
+│   ├── migrations.ts (+ test)    # migrateDocument: любая версия → текущая + проверка
+│   ├── validate.ts               # validateDocument: свой валидатор, ошибка с путём до поля
+│   ├── errors.ts                 # StorageError с кодом: unavailable / quota / invalid / newer-version
+│   ├── repository.ts             # interface Repository { load(); save(doc) } — асинхронный
 │   ├── localStorageRepository.ts
+│   ├── webStorage.ts             # доступ к localStorage с переводом ошибок в StorageError
 │   ├── exportImport.ts
 │   ├── persist.ts                # navigator.storage.persist()
 │   └── prefs.ts                  # мелочи вне документа: последние значения калькулятора
@@ -102,6 +105,9 @@ Unit-тесты — рядом с кодом (`*.test.ts`). E2e-тесты — �
 - Сейчас: весь документ (см. [data-model.md](./data-model.md)) в `localStorage` одним ключом.
 - При старте — `navigator.storage.persist()`, чтобы браузер не вычистил данные.
 - **Экспорт/импорт JSON с первого дня** — ручной бэкап и перенос между устройствами.
+- Загрузка и импорт проходят один путь: JSON → миграции → проверка (`migrateDocument`). Импорт ничего не сохраняет сам — при ошибке текущие данные не тронуты.
+- Ошибки хранилища — `StorageError` с кодом; UI показывает сообщение по коду, ошибки не глотаются. Исключение — битые последние значения калькулятора: это лишь подсказка, считаются отсутствующими.
+- Интерфейс репозитория асинхронный, хотя localStorage синхронный: замена на IndexedDB или облако не меняет вызывающий код.
 - Замена хранилища = новый адаптер репозитория; domain/ui не меняются.
 
 ## Будущая синхронизация (не MVP)
