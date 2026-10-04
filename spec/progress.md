@@ -8,7 +8,8 @@
 
 - [x] **0. Спецификация** — product, data-model, architecture
 - [x] **0.1. Правила для Claude** — `.claude/rules/` (workflow, git, слои), `.claude/skills/` (finish-step, spec-change, new-screen, schema-migration)
-- [ ] **1. Каркас** — Vite + React + TS, Vitest, линтер/форматтер, структура папок, PWA-плагин
+- [ ] **1. Каркас** — Vite + React + TS, Vitest, Playwright (`e2e/`, мобильный и десктопный viewport), линтер/форматтер, структура папок, PWA-плагин
+  - системные библиотеки Chromium в WSL ставит пользователь: `sudo pnpm exec playwright install-deps chromium`
 - [ ] **2. Domain** — деньги/копейки, распределение, остаток/свободные/экстра, ипотечный калькулятор; тесты по примерам из product.md
 - [ ] **3. Storage** — репозиторий, localStorage-адаптер, schemaVersion, экспорт/импорт, `storage.persist()`
 - [ ] **4. План** — экраны счетов (простых и составных), базы; версии плана; архив
@@ -37,6 +38,7 @@
 | 2026-10-04 | Стили — CSS Modules + `tokens.css`, нативная вложенность, `@container` (middle 36rem, big 60rem), без SCSS |
 | 2026-10-04 | Git: Conventional Commits (тип/область по-английски, описание по-русски), основная ветка `master`, ветки `<тип>/<slug>`; правила — `.claude/rules/git.md` |
 | 2026-10-04 | Пакетный менеджер — pnpm |
+| 2026-10-04 | UI проверяется через Playwright (headless Chromium в WSL): e2e-сценарии в `e2e/` + скриншоты. Claude in Chrome — не используем по умолчанию |
 
 ## Открытые вопросы
 
