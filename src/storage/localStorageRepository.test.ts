@@ -35,6 +35,14 @@ describe('localStorageRepository', () => {
     await expect(createLocalStorageRepository(storage).load()).rejects.toBeInstanceOf(StorageError);
   });
 
+  test('сырые данные отдаются как есть, даже битые', async () => {
+    const storage = memoryStorage();
+    const repo = createLocalStorageRepository(storage);
+    await expect(repo.loadRaw()).resolves.toBeUndefined();
+    storage.setItem(DOCUMENT_KEY, '{oops');
+    await expect(repo.loadRaw()).resolves.toBe('{oops');
+  });
+
   test('переполнение — quota', async () => {
     const storage = memoryStorage();
     storage.setItem = () => {

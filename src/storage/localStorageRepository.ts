@@ -26,5 +26,8 @@ export function createLocalStorageRepository(
     async save(doc: AppDocument) {
       writeItem(storage, key, JSON.stringify(doc));
     },
+    async loadRaw() {
+      return readItem(storage, key) ?? undefined;
+    },
   };
 }

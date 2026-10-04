@@ -9,4 +9,6 @@ export interface Repository {
   /** Сохранённый документ, приведённый к текущей версии; `undefined` — ещё ничего не сохраняли. */
   load(): Promise<AppDocument | undefined>;
   save(doc: AppDocument): Promise<void>;
+  /** Сохранённые данные как есть, без разбора — чтобы спасти их, если `load()` не смог. */
+  loadRaw(): Promise<string | undefined>;
 }

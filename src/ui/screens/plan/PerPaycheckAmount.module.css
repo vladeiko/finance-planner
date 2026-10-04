@@ -1,0 +1,14 @@
+.both {
+  display: inline-grid;
+  justify-items: end;
+
+  & > span {
+    white-space: nowrap;
+  }
+
+  & small {
+    font-size: var(--font-size-sm);
+    font-weight: normal;
+    color: var(--color-text-muted);
+  }
+}
