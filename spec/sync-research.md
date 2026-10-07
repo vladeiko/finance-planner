@@ -20,7 +20,7 @@
 | Свой прокси (Cloudflare Worker) | да | да | не берём: это бэкенд, и домен не в белых списках |
 
 - **Яндекс.Диск.** Загрузка работает: `cloud-api.yandex.net` и `uploader*.disk.yandex.net` отдают CORS. Скачивание — нет: `downloader.disk.yandex.ru` без `Access-Control-Allow-Origin` и с 403, и для приватных, и для публичных файлов. Обходы не работают: WebDAV без CORS, `<script src>` блокируется (файл отдаётся как `text/plain`).
-- **GitVerse.** Файлы пишутся через `PUT /repos/{owner}/{repo}/contents/{path}` с JSON-телом, сервер принимает только `application/json`. Preflight разрешает один заголовок — `Authorization`, поэтому браузер JSON не отправит (с curl запись работает). Чтение работает. Если GitVerse разрешит `Content-Type`, вариант вернётся в игру.
+- **GitVerse.** Файлы пишутся через `PUT /repos/{owner}/{repo}/contents/{path}` с JSON-телом, сервер принимает только `application/json`. Preflight разрешает один заголовок — `Authorization`, поэтому браузер JSON не отправит (с curl запись работает). Чтение работает. Без `Content-Type` тело не разбирается (400). При записи обязателен `branch` (в документации помечен необязательным). OAuth не помогает: CORS одинаков для всего `api.gitverse.ru`, а preflight идёт без токена. 2026-10-08 отправлено письмо в поддержку с просьбой добавить `Content-Type` в `Access-Control-Allow-Headers`; если разрешат, вариант вернётся в игру.
 - **GitFlic.** Preflight на `api.gitflic.ru` с нашим origin пропускает `authorization, content-type`. Формат API, токены и доступность при белых списках не проверены, документацию найти не удалось.
 
 ## Правовой аспект
